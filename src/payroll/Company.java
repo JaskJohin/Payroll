@@ -9,4 +9,12 @@ public class Company {
     public void calcPayroll(){
     
     }
+    
+    public void annualPayroll(){
+    
+    }
+    
+    public void save(){
+    
+    }
 }
