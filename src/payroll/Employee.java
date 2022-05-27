@@ -7,7 +7,7 @@ package payroll;
 
 public class Employee {
     String name;
-    String role;
+    String[] role = {"Developer", "Analyst", "Manager", "Technical"};
     int salary;
 
     
