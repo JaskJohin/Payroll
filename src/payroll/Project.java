@@ -5,8 +5,14 @@ package payroll;
  * @author Alexandros Dimitrakopoulos
  */
 
-public class Project {
-    String description;
-    String type[] = {"DevelopmentProject", "TechnicalProject"};
-    String client;
+//abstract υπερκλάση Project
+public abstract class Project 
+
+{
+    private String name;
+    
+    public Project(String n) 
+    {
+        this.name = n;
+    }	
 }

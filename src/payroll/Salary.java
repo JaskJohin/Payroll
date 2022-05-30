@@ -5,6 +5,12 @@ package payroll;
  * @author Alexandros Dimitrakopoulos
  */
 
-public class Salary {
-    
+//Υποκλάση Salary (Μισθωτοί) της κλάσης Pay 
+public class Salary extends Pay
+
+{
+    public Salary() 
+    {
+        
+    }    
 }
