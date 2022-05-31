@@ -9,8 +9,8 @@ package payroll;
 public class Analyst extends Employee
 {
   
-    public Analyst(String name, Pay payment)
+    public Analyst(String name, EmployeeType type)
     {
-        super(name, payment);
+        super(name, type);
     }
 }

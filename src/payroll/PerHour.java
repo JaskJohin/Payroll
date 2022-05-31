@@ -5,12 +5,12 @@ package payroll;
  * @author Alexandros Dimitrakopoulos
  */
 
-//Υποκλάση PerHour (Με την ώρα) της κλάσης Pay 
-public class PerHour extends Pay
+//Υποκλάση PerHour (Με την ώρα) της κλάσης EmployeeType 
+public class PerHour extends EmployeeType
 
 {
-    public PerHour(int hours) 
+    public PerHour(int hour) 
     {
-        super(hours);
+        super(hour);
     } 
 }

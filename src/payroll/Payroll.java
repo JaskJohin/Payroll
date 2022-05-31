@@ -1,5 +1,7 @@
 package payroll;
 
+import java.io.IOException;
+
 /**
  *
  * @author Alexandros Dimitrakopoulos
@@ -8,7 +10,7 @@ package payroll;
 public class Payroll 
 
 {    
-    public static void main(String[]args)
+    public static void main(String[]args) throws IOException
     { 
     Company c = new Company();
     c.addEmployee(new Developer("AA", new Salary()));
@@ -22,6 +24,8 @@ public class Payroll
     c.addProjectToEmployee("CC", new TechnicalProject("Network setup for EAP"));
     c.addProjectToEmployee("KK", new DevelopmentProject("Website for UoM"));
     c.addProjectToEmployee("BB", new TechnicalProject("Network setup for EAP"));
+    //c.calcPayroll();
     System.out.println(c.calcPayroll());
+    c.save();
     }    
 }

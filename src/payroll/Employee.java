@@ -10,15 +10,15 @@ import java.util.ArrayList;
 //abstract υπερκλάση Employee
 public abstract class Employee 
 {
-    private Pay payment;
+    private EmployeeType type; //Τύπος υπαλλήλου (Με την ώρα ή με το μήνα)
     private String name;
     private ArrayList<Project> projectList = new ArrayList<>(); //Η λίστα με τα projects
     
     //Constructor υπαλλήλλου με όνομα και τύπο μισθοδοσίας
-    public Employee(String name, Pay payment) 
+    public Employee(String name, EmployeeType earnings) 
     {
         this.name = name;
-        this.payment = payment;
+        this.type = earnings;
     }
 	
     public String getName() 
@@ -26,9 +26,9 @@ public abstract class Employee
         return name;
     }
 
-    public Pay getPay() 
+    public EmployeeType getPay() 
     {
-        return payment;
+        return type;
     }
     
     public void addProject(Project project)

@@ -5,25 +5,25 @@ package payroll;
  * @author Alexandros Dimitrakopoulos
  */
 
-//abstract υπερκλάση Πληρωμών
-public abstract class Pay 
+//abstract υπερκλάση πληρωμών
+public abstract class EmployeeType 
 
 {
+    private int hour;
     private int money;
-    private int hours;
  
-    public Pay() 
+    public EmployeeType() 
     {
     }
     
-    public Pay(int hours) 
+    public EmployeeType(int hour) 
     {
-        this.hours = hours;
+        this.hour = hour;
     }
 	
-    public int getHours() 
+    public int getHour() 
     {
-        return hours;
+        return hour;
     } 
 	
     public int getMoney() 

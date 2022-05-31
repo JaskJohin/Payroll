@@ -1,6 +1,9 @@
 package payroll;
 
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -11,7 +14,7 @@ public class Company
 
 {
     //Λίστα με τις πληρωμές των υπαλλήλων
-    private ArrayList<Pay> wages = new ArrayList<>();
+    private ArrayList<EmployeeType> wages = new ArrayList<>();
     
     //Λίστα υπαλλήλων της εταιρείας
     private ArrayList<Employee> employees = new ArrayList<>();
@@ -30,6 +33,20 @@ public class Company
         }
     }
     
+    //Αποθήκευση σε αρχείο TXT
+    public void save() throws IOException
+    {
+        BufferedWriter out = new BufferedWriter(new FileWriter("Payroll.txt"));
+        try 
+        {
+            out.write(calcPayroll());
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            out.close();
+        }    
+    }
+    
     //Προσθήκη νέου υπαλλήλου στην εταιρεία
     public void addEmployee(Employee employee) 
     {
@@ -45,11 +62,11 @@ public class Company
         
         for (Employee employee : employees) //Χρησιμοποιούμε for-each για τη διαπέραση της λίστας των υπαλλήλων 
         {
-            //θα χρησιμοποιήσουμε το instanceof για τον ελεγχος της σχέσης υπερκλάσης π.χ (Pay) και υποκλάσης (Salary)
-            //(Employee) και υποκλάσεων (Developer, Analyst, Technical, Manager)
+            //θα χρησιμοποιήσουμε το instanceof για τον ελεγχο της σχέσης υπερκλάσης π.χ (Pay) και υποκλάσης (Salary)
+            //Επίσης, για να υπολογίσουμε τις αποδοχές θα διαβάσουμε πρώτα (μέσω της μεθόδου getPay()),
             
             //Υπολογισμός μηνιαίων αποδοχών
-            if (employee.getPay() instanceof Salary) //Έλεγχος σχέσης υπερκλάσης (Pay) και υποκλάσης (Salary)
+            if (employee.getPay() instanceof Salary) //Έλεγχος σχέσης υπερκλάσης (EmployeeType) και υποκλάσης (Salary)
             {
                 //Αν ο υπάλληλος είναι Manager 
                 if (employee instanceof Manager) 
@@ -79,33 +96,33 @@ public class Company
                 //Αν ο υπάλληλος είναι Analyst 
                 if (employee instanceof Analyst) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (15 * employee.getPay().getHours()));
+                    employee.getPay().setMoney(employee.getPay().getMoney() + (15 * employee.getPay().getHour()));
                 }                
 
                 //Αν ο υπάλληλος είναι Developer 
                 if (employee instanceof Developer) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (12 * employee.getPay().getHours()));
+                    employee.getPay().setMoney(employee.getPay().getMoney() + (12 * employee.getPay().getHour()));
                 }
             
                 //Αν ο υπάλληλος είναι Technical
                 if (employee instanceof Technical) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (8 * employee.getPay().getHours()));
+                    employee.getPay().setMoney(employee.getPay().getMoney() + (8 * employee.getPay().getHour()));
                 }
                 
                 //Αν ο υπάλληλος είναι Manager 
                 if (employee instanceof Manager) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (20 * employee.getPay().getHours()));
+                    employee.getPay().setMoney(employee.getPay().getMoney() + (20 * employee.getPay().getHour()));
                 }
             }
             //Υπολογισμός συνολικής μισθοδοσίας της εταιρείας για έναν μήνα            
             sum = sum + employee.getPay().getMoney();
             //Επιμέρους μισθοδοσίες των υπαλλήλων για έναν μήνα
-            payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές:" + employee.getPay().getMoney() + " €\n";
+            payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές: " + employee.getPay().getMoney() + " Ευρώ\n";
         }
-        payroll = payroll + "----------------------------------------" + "\nΣυνολική Μισθοδοσία Εταιρείας: " + sum + " €\n";
+        payroll = payroll + "----------------------------------------" + "\nΣυνολική Μισθοδοσία Εταιρείας: " + sum + " Ευρώ\n";
         return payroll;
     }
 }
