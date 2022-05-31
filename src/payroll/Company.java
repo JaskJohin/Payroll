@@ -1,9 +1,9 @@
 package payroll;
 
 import java.util.ArrayList;
+import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  *
@@ -36,14 +36,20 @@ public class Company
     //Αποθήκευση σε αρχείο TXT των επιμέρους αποδοχών καθώς και τη συνολική της εταιρείας
     public void save() throws IOException
     {
-        BufferedWriter out = new BufferedWriter(new FileWriter("Payroll.txt"));
+        BufferedWriter output;
+        
+        output = new BufferedWriter(new FileWriter("Payroll.txt"));
         try 
         {
-            out.write(calcPayroll());
-        } catch (IOException e) {
+            output.write(calcPayroll());
+        } 
+        catch (IOException e) 
+        {
             System.out.println(e);
-        } finally {
-            out.close();
+        } 
+        finally 
+        {
+            output.close();
         }    
     }
     
@@ -57,13 +63,12 @@ public class Company
     public String calcPayroll()
     {
         String payroll = "";
-       // String payroll = "Μήνας Μισθοδοσίας: " + month + "\n" + "----------------------------------------";
-        int total = 0;
+        int total = 0; //Αρχικοποίηση της συνολικής μισθοδοσίας της εταιρείας
         
-        for (Employee employee : employees) //Χρησιμοποιούμε for-each για τη διαπέραση της λίστας των υπαλλήλων 
+        for (Employee employee : employees) //Για κάθε υπάλληλο (διαπέραση της λίστας των υπαλλήλων) 
         {
-            //θα χρησιμοποιήσουμε το instanceof για τον ελεγχο της σχέσης υπερκλάσης π.χ (Pay) και υποκλάσης (Salary)
-            //Επίσης, για να υπολογίσουμε τις αποδοχές θα διαβάσουμε πρώτα (μέσω της μεθόδου getPay()),
+            //θα χρησιμοποιήσουμε το instanceof για τον ελεγχο της σχέσης υπερκλάσης π.χ (EmployeeType) και υποκλάσης (Salary)
+            //Επίσης, για να υπολογίσουμε τις αποδοχές θα διαβάσουμε πρώτα (μέσω της μεθόδου getType()),
             
             //Υπολογισμός μηνιαίων αποδοχών
             if (employee.getType() instanceof Salary) //Έλεγχος σχέσης υπερκλάσης (EmployeeType) και υποκλάσης (Salary)
@@ -117,10 +122,11 @@ public class Company
                     employee.getType().setMoney(employee.getType().getMoney() + (20 * employee.getType().getHour()));
                 }
             }
-            //Υπολογισμός συνολικής μισθοδοσίας της εταιρείας για έναν μήνα            
-            total = total + employee.getType().getMoney();
             //Επιμέρους μισθοδοσίες των υπαλλήλων για έναν μήνα
             payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές: " + employee.getType().getMoney() + " Ευρώ\n";
+            
+            //Υπολογισμός συνολικής μισθοδοσίας της εταιρείας για έναν μήνα            
+            total = total + employee.getType().getMoney();            
         }
         payroll = payroll + "----------------------------------------" + "\nΣυνολική Μισθοδοσία Εταιρείας: " + total + " Ευρώ\n";
         return payroll;

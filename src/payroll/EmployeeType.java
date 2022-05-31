@@ -5,19 +5,20 @@ package payroll;
  * @author Alexandros Dimitrakopoulos
  */
 
-//abstract υπερκλάση πληρωμών
+//abstract υπερκλάση τύπου υπαλλήλου (ωρομίσθιος ή μισθός με το μήνα)
 public abstract class EmployeeType 
 {
     private int hour;
     private int money;
- 
-    public EmployeeType() 
-    {
-    }
     
     public EmployeeType(int hour) 
     {
         this.hour = hour;
+    }       
+ 
+    public EmployeeType() 
+    {
+        
     }
 	
     public int getHour() 
