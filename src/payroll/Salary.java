@@ -7,7 +7,6 @@ package payroll;
 
 //Υποκλάση Salary (Μισθωτοί) της κλάσης EmployeeType 
 public class Salary extends EmployeeType
-
 {
     public Salary() 
     {

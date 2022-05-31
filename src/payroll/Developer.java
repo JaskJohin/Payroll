@@ -7,7 +7,6 @@ package payroll;
 
 //Υποκλάση Developer της κλάσης Employee
 public class Developer extends Employee
-
 {    
   public Developer(String name, EmployeeType type)
     {

@@ -10,11 +10,10 @@ import java.io.IOException;
  * @author Alexandros Dimitrakopoulos
  */
 
-public class Company 
-
+public class Company
 {
-    //Λίστα με τις πληρωμές των υπαλλήλων
-    private ArrayList<EmployeeType> wages = new ArrayList<>();
+    //Λίστα με τoυς τύπους των υπαλλήλων
+    final ArrayList<EmployeeType> types = new ArrayList<>();
     
     //Λίστα υπαλλήλων της εταιρείας
     private ArrayList<Employee> employees = new ArrayList<>();
@@ -22,15 +21,16 @@ public class Company
     //Ανάθεση νέου project σε υπάλληλο
     public void addProjectToEmployee(String empl, Project project) 
     {
-        for (Employee employeeee : employees) 
+        //Java functional operations (Πρόταση του JDK αντι για την χρήση for)
+        //Αν ο υπάλληλος υπάρχει στη λίστα υπαλλήλων
+        employees.stream().filter((employeeee) -> (empl.equals(employeeee.getName()))).map((employeeee) -> 
         {
-            //Αν ο υπάλληλος υπάρχει στη λίστα υπαλλήλων
-            if (empl.equals(employeeee.getName())) 
-                {
-                    employeeee.addProject(project); //Ανάθεσέ του project
-                    employeeee.getType().setMoney(employeeee.getType().getMoney() + 80); //Προσθήκη Bonus
-                }
-        }
+            employeeee.addProject(project); //Ανάθεσέ του project
+            return employeeee;
+        }).forEachOrdered((employeeee) -> 
+        {
+            employeeee.getType().setMoney(employeeee.getType().getMoney() + 80); //Προσθήκη Bonus
+        });
     }
     
     //Αποθήκευση σε αρχείο TXT των επιμέρους αποδοχών καθώς και τη συνολική της εταιρείας

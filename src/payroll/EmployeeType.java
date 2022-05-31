@@ -7,7 +7,6 @@ package payroll;
 
 //abstract υπερκλάση πληρωμών
 public abstract class EmployeeType 
-
 {
     private int hour;
     private int money;

@@ -7,7 +7,6 @@ package payroll;
 
 //Υποκλάση TechnicalProject της κλάσης Project
 public class TechnicalProject extends Project
-
 {    
     public TechnicalProject(String name)
     {

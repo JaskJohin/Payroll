@@ -7,9 +7,8 @@ package payroll;
 
 //abstract υπερκλάση Project
 public abstract class Project 
-
 {
-    private String name;
+    final String name;
     
     public Project(String n) 
     {

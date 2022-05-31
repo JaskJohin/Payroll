@@ -8,7 +8,6 @@ import java.io.IOException;
  */
 
 public class Payroll 
-
 {    
     public static void main(String[]args) throws IOException
     { 

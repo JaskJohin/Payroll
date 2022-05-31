@@ -7,9 +7,8 @@ package payroll;
  
 //Υποκλάση Technical της κλάσης Employee
 public class Technical extends Employee
-{
-    
-  public Technical(String name, EmployeeType type)
+{    
+    public Technical(String name, EmployeeType type)
     {
         super(name, type);
     }
