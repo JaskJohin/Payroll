@@ -26,7 +26,7 @@ public abstract class Employee
         return name;
     }
 
-    public EmployeeType getPay() 
+    public EmployeeType getType() 
     {
         return type;
     }

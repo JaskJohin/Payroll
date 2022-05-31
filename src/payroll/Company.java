@@ -28,12 +28,12 @@ public class Company
             if (empl.equals(employeeee.getName())) 
                 {
                     employeeee.addProject(project); //Ανάθεσέ του project
-                    employeeee.getPay().setMoney(employeeee.getPay().getMoney() + 80); //Προσθήκη Bonus
+                    employeeee.getType().setMoney(employeeee.getType().getMoney() + 80); //Προσθήκη Bonus
                 }
         }
     }
     
-    //Αποθήκευση σε αρχείο TXT
+    //Αποθήκευση σε αρχείο TXT των επιμέρους αποδοχών καθώς και τη συνολική της εταιρείας
     public void save() throws IOException
     {
         BufferedWriter out = new BufferedWriter(new FileWriter("Payroll.txt"));
@@ -58,7 +58,7 @@ public class Company
     {
         String payroll = "";
        // String payroll = "Μήνας Μισθοδοσίας: " + month + "\n" + "----------------------------------------";
-        int sum = 0;
+        int total = 0;
         
         for (Employee employee : employees) //Χρησιμοποιούμε for-each για τη διαπέραση της λίστας των υπαλλήλων 
         {
@@ -66,63 +66,63 @@ public class Company
             //Επίσης, για να υπολογίσουμε τις αποδοχές θα διαβάσουμε πρώτα (μέσω της μεθόδου getPay()),
             
             //Υπολογισμός μηνιαίων αποδοχών
-            if (employee.getPay() instanceof Salary) //Έλεγχος σχέσης υπερκλάσης (EmployeeType) και υποκλάσης (Salary)
+            if (employee.getType() instanceof Salary) //Έλεγχος σχέσης υπερκλάσης (EmployeeType) και υποκλάσης (Salary)
             {
                 //Αν ο υπάλληλος είναι Manager 
                 if (employee instanceof Manager) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + 2000);
+                    employee.getType().setMoney(employee.getType().getMoney() + 2000);
                 }
                 //Αν ο υπάλληλος είναι Developer 
                 if (employee instanceof Developer) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + 1200);
+                    employee.getType().setMoney(employee.getType().getMoney() + 1200);
                 }
                 //Αν ο υπάλληλος είναι Analyst 
                 if (employee instanceof Analyst) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + 1500);
+                    employee.getType().setMoney(employee.getType().getMoney() + 1500);
                 }
                 //Αν ο υπάλληλος είναι Technical 
                 if (employee instanceof Technical) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + 800);
+                    employee.getType().setMoney(employee.getType().getMoney() + 800);
                 }
             }
 
             //Υπολογισμός αποδοχών με την ώρα
-            if (employee.getPay() instanceof PerHour) 
+            if (employee.getType() instanceof PerHour) 
             {
                 //Αν ο υπάλληλος είναι Analyst 
                 if (employee instanceof Analyst) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (15 * employee.getPay().getHour()));
+                    employee.getType().setMoney(employee.getType().getMoney() + (15 * employee.getType().getHour()));
                 }                
 
                 //Αν ο υπάλληλος είναι Developer 
                 if (employee instanceof Developer) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (12 * employee.getPay().getHour()));
+                    employee.getType().setMoney(employee.getType().getMoney() + (12 * employee.getType().getHour()));
                 }
             
                 //Αν ο υπάλληλος είναι Technical
                 if (employee instanceof Technical) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (8 * employee.getPay().getHour()));
+                    employee.getType().setMoney(employee.getType().getMoney() + (8 * employee.getType().getHour()));
                 }
                 
                 //Αν ο υπάλληλος είναι Manager 
                 if (employee instanceof Manager) 
                 {
-                    employee.getPay().setMoney(employee.getPay().getMoney() + (20 * employee.getPay().getHour()));
+                    employee.getType().setMoney(employee.getType().getMoney() + (20 * employee.getType().getHour()));
                 }
             }
             //Υπολογισμός συνολικής μισθοδοσίας της εταιρείας για έναν μήνα            
-            sum = sum + employee.getPay().getMoney();
+            total = total + employee.getType().getMoney();
             //Επιμέρους μισθοδοσίες των υπαλλήλων για έναν μήνα
-            payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές: " + employee.getPay().getMoney() + " Ευρώ\n";
+            payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές: " + employee.getType().getMoney() + " Ευρώ\n";
         }
-        payroll = payroll + "----------------------------------------" + "\nΣυνολική Μισθοδοσία Εταιρείας: " + sum + " Ευρώ\n";
+        payroll = payroll + "----------------------------------------" + "\nΣυνολική Μισθοδοσία Εταιρείας: " + total + " Ευρώ\n";
         return payroll;
     }
 }
