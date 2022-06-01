@@ -62,7 +62,7 @@ public class Company
     public String calcPayroll()
     {
         String payroll = "";
-        int total = 0; //Αρχικοποίηση της συνολικής μισθοδοσίας της εταιρείας
+        int total = 0; //Αρχικοποίηση της μισθοδοσίας 
         
         for (Employee employee : employees) //Για κάθε υπάλληλο (διαπέραση της λίστας των υπαλλήλων) 
         {
