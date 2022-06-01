@@ -36,8 +36,7 @@ public class Company
     //Αποθήκευση σε αρχείο TXT των επιμέρους αποδοχών καθώς και τη συνολική της εταιρείας
     public void save() throws IOException
     {
-        BufferedWriter output;
-        
+        BufferedWriter output;        
         output = new BufferedWriter(new FileWriter("Payroll.txt"));
         try 
         {
@@ -123,11 +122,10 @@ public class Company
                 }
             }
             //Επιμέρους μισθοδοσίες των υπαλλήλων για έναν μήνα
-            payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές: " + employee.getType().getMoney() + " Ευρώ\n";
-            
-            //Υπολογισμός συνολικής μισθοδοσίας της εταιρείας για έναν μήνα            
-            total = total + employee.getType().getMoney();            
+            payroll = payroll + "\nΥπάλληλος: " + employee.getName() + "\nΑποδοχές: " + employee.getType().getMoney() + " Ευρώ\n";                       
+            total = total + employee.getType().getMoney();
         }
+        //Υπολογισμός συνολικής μισθοδοσίας της εταιρείας για έναν μήνα
         payroll = payroll + "----------------------------------------" + "\nΣυνολική Μισθοδοσία Εταιρείας: " + total + " Ευρώ\n";
         return payroll;
     }
